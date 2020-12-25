@@ -10,13 +10,20 @@
   <body>
     <div class="menu">
       <div class="menu__display">
-        <div class="menu__display__custom">
-          <p class="menu__display__header">Menu</p>
-          <p class="menu__display__button" menu__display__button>Espresso</p>
-          <p class="menu__display__button" menu__display__button>Cappuccino</p>
-          <p class="menu__display__button" menu__display__button>Latte</p>
-          <p class="menu__display__login">Log in</p>
+        <div class="menu__display__welcome" data-display-welcome>
+          <p class="welcome-message">Click me <br> and I will make you happy</p>
         </div>
+
+        <div class="menu__display__custom disable" data-display-custom>
+          <p class="menu__display__output">Your balance is <br> <span class="menu__display__output-data" data-custom-balance>0</span> BYN</p>
+          <p class="menu__display__button menu__display__pay" data-input-money>Add more money</p>
+          <p class="menu__display__button" custom__button>Espresso</p>
+          <p class="menu__display__button" custom__button>Cappuccino</p>
+          <p class="menu__display__button" custom__button>Latte</p>
+          <p class="menu__display__button menu__display__login" data-login>Service</p>
+        </div>
+
+
       </div>
 
       <div class="coin-keeper">

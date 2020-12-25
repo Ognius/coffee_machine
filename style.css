@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
+    font-size: 16px;
     color: #282323;
     text-decoration: none;
 }
@@ -33,22 +33,41 @@ body{
     padding: 10px;
 }
 
-.menu__display__header {
+.disable {
+    display: none;
+}
+
+.welcome-message {
+    margin-top: 25%;
+    font-size: 20px;
+    color: #41bdad;
+    font-weight: bold;
+    line-height: 200%;
+}
+
+.menu__display__welcome {
+    height: 100%;
+}
+
+.menu__display__output {
     text-align: center;
     color: #43beae;
     font-weight: bold;
 }
 
 .menu__display__button {
-    padding: 10px;
-    margin-top: 10px;
+    cursor: pointer;
+    padding: 7px;
+    margin-top: 7px;
     background-color: #ddcfcc;
     border-radius: 10px;
 }
 
+.menu__display__pay {
+    text-align: right;
+}
+
 .menu__display__login {
-    padding: 10px;
-    margin-top: 10px;
     position: absolute;
     bottom: 10px;
     right: 10px;
