@@ -3,10 +3,13 @@ function clearDisplay() {
     welcomeScreen.classList.add("disable");
     cookingScreen.classList.add("disable");
     readyScreen.classList.add("disable");
+    pinScreen.classList.add("disable");
+    serviceScreen.classList.add("disable");
+    blockScreen.classList.add("disable");
 }
 
 function showWelcomeMenu() {
-    if (now_no_active >= no_active_delay) { 
+    if (now_no_active >= no_active_delay & block == false) { 
         clearDisplay();
         welcomeScreen.classList.remove("disable");
    }   
@@ -24,7 +27,24 @@ function showReadyMenu() {
     readyScreen.classList.remove("disable");
 }
 
+function showPinMenu() {
+    document.querySelector('[data-pin]').value = "";
+    pinScreen.classList.remove("disable");
+}
+
+function showServiceMenu() {
+    serviceScreen.classList.remove("disable");
+}
+
+function showBlockMenu(){
+    blockScreen.classList.remove("disable");
+    block = true;
+}
+
 function addMoney() {
+    if (cups < 2) {
+        alert(`Please pay attention, ${cups} cup left`);
+    }
     var input = parseInt(prompt('Add some money. Please, pay attention, the machine does NOT give a change', 0));
     if (input) {
         customBalance += input;
@@ -56,6 +76,26 @@ function clearSmoke() {
     };
 }
 
+function checkPin() {
+    pin = document.querySelector('[data-pin]').value;
+    if (pin == pinFactory) {
+        document.querySelector('[data-pin]').value = "";
+        clearDisplay();
+        showServiceMenu();
+        return;
+    } else {
+        if (pinAttempt == 2) {
+            document.querySelector('[data-pin]').value = "";
+            clearDisplay();
+            showBlockMenu();
+        } else {
+            document.querySelector('[data-pin]').value = "";
+            pinAttempt++;
+        }
+
+    }
+}
+
 
 function updateOutput(text, data) {
     text.innerHTML = data;
@@ -76,6 +116,9 @@ const welcomeScreen = document.querySelector('[data-display-welcome]');
 const customScreen = document.querySelector('[data-display-custom]');
 const cookingScreen = document.querySelector('[data-display-cooking]');
 const readyScreen = document.querySelector('[data-display-ready]');
+const pinScreen = document.querySelector('[data-display-pin]');
+const serviceScreen = document.querySelector('[data-display-service]');
+const blockScreen = document.querySelector('[data-display-block]');
 
 
 const coffeeButtons = document.querySelectorAll('[custom__button]');
@@ -85,19 +128,29 @@ const latteButton = document.querySelector('[data-latte]');
 const inputMoney = document.querySelector('[data-input-money]');
 const pour = document.getElementById("coffee-medium__liquid");
 const smoke = document.querySelectorAll('[data-smoke]');
-console.log(smoke);
+
+const login = document.querySelector('[data-login]');
+const pinButton = document.querySelector('[data-pin-button]');
 
 const customBalanceDisplay = document.querySelector('[data-custom-balance]');
 
 const costEspr = 1.5;
 const costCap = 2.5;
 const costLat = 2.5;
+const pinFactory = 1234;
 
-
+var cups = 3;
 var customBalance = 0;
+var pinAttempt = 0;
 var no_active_delay = 30; 
 var now_no_active = 0;
+var block = false;
 
+
+welcomeScreen.addEventListener("click", function(){
+    clearDisplay();
+    showCustomMenu();
+});
 
 coffeeButtons.forEach(button => {
     button.addEventListener("click", function() {
@@ -115,23 +168,31 @@ coffeeButtons.forEach(button => {
         }
         if (costChosen > customBalance) {
             alert ("Please, add more money")
-        } else {
+        } else if (cups < 1) {
+            alert ("Sorry, we run out of cups..")
+        } else{
             customBalance -= costChosen;
+            cups--;
+            console.log(cups);
             updateOutput(customBalanceDisplay, customBalance);
             cookCoffee();
         }
       }, false);
 });
 
-welcomeScreen.addEventListener("click", function(){
-    clearDisplay();
-    showCustomMenu();
-});
+
 
 inputMoney.addEventListener("click", function(){
     addMoney();
     updateOutput(customBalanceDisplay, customBalance);
 });
+
+login.addEventListener("click", function(){
+    clearDisplay();
+    showPinMenu();
+});
+
+pinButton.addEventListener('click', checkPin);
 
 
 
