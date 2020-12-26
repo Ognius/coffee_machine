@@ -11,16 +11,23 @@
     <div class="menu">
       <div class="menu__display">
         <div class="menu__display__welcome" data-display-welcome>
-          <p class="welcome-message">Click me <br> and I will make you happy</p>
+          <p class="message welcome-message">Click me <br> and I will make you happy</p>
         </div>
 
         <div class="menu__display__custom disable" data-display-custom>
           <p class="menu__display__output">Your balance is <br> <span class="menu__display__output-data" data-custom-balance>0</span> BYN</p>
-          <p class="menu__display__button menu__display__pay" data-input-money>Add more money</p>
-          <p class="menu__display__button" custom__button>Espresso</p>
-          <p class="menu__display__button" custom__button>Cappuccino</p>
-          <p class="menu__display__button" custom__button>Latte</p>
+          <p class="menu__display__button menu__display__pay" data-input-money><span></span> <span>Add more money</span> </p>
+          <p class="menu__display__button" custom__button data-espresso> <span>Espresso</span> <span>1.5</span>  </p>
+          <p class="menu__display__button" custom__button data-cappuccino><span>Cappuccino</span> <span>2.5</span></p>
+          <p class="menu__display__button" custom__button data-latte><span>Latte</span> <span>2.5</span></p>
           <p class="menu__display__button menu__display__login" data-login>Service</p>
+        </div>
+
+        <div class="menu__display__cooking disable" data-display-cooking>
+          <p class="message">Your coffee is cooking</p>
+        </div>
+        <div class="menu__display__ready disable" data-display-ready>
+          <p class="message">Your coffee is ready</p>
         </div>
 
 
@@ -45,6 +52,10 @@
         <div class="coffee-medium__exit"></div>
         <div class="coffee-medium__arm"></div>
         <div class="coffee-medium__liquid" id="coffee-medium__liquid"></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-one" data-smoke></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-two" data-smoke></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-three" data-smoke></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-for" data-smoke></div>
         <div class="coffee-medium__cup"></div>
       </div>
       <div class="coffee-footer"></div>

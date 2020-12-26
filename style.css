@@ -44,14 +44,17 @@ body{
     50% { color: #027a6a; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 1px #ffd, 0 0 2px #fff; }
 }
 .welcome-message {
+    text-shadow: 0 -1px rgba(0,0,0,.1);
+    -webkit-animation: pulsate 1.2s linear infinite;
+    animation: pulsate 1.2s linear infinite;
+}
+
+.message {
     margin-top: 25%;
     font-size: 20px;
     color: #41bdad;
     font-weight: bold;
     line-height: 200%;
-    text-shadow: 0 -1px rgba(0,0,0,.1);
-    -webkit-animation: pulsate 1.2s linear infinite;
-    animation: pulsate 1.2s linear infinite;
 }
 
 .menu__display__welcome {
@@ -70,6 +73,8 @@ body{
     margin-top: 7px;
     background-color: #ddcfcc;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .menu__display__pay {
@@ -300,6 +305,74 @@ body{
     background-color: #74372b;
     animation: liquid 4s 4s linear;
 }
+
+.coffee-medium__smoke.smoke-active {
+    width: 8px;
+    height: 20px;
+    position: absolute;  
+    border-radius: 5px;
+    background-color: #b3aeae;
+  }
+  @keyframes smokeOne {
+    0% {
+      bottom: 20px;
+      opacity: 0;
+    }
+    40% {
+      bottom: 50px;
+      opacity: .5;
+    }
+    80% {
+      bottom: 80px;
+      opacity: .3;
+    }
+    100% {
+      bottom: 80px;
+      opacity: 0;
+    }
+  }
+  @keyframes smokeTwo {
+    0% {
+      bottom: 40px;
+      opacity: 0;
+    }
+    40% {
+      bottom: 70px;
+      opacity: .5;
+    }
+    80% {
+      bottom: 80px;
+      opacity: .3;
+    }
+    100% {
+      bottom: 80px;
+      opacity: 0;
+    }
+  }
+  .coffee-medium__smoke-one.smoke-active {
+    opacity: 0;
+    bottom: 50px;
+    left: 102px;
+    animation: smokeOne 4s 4s linear 2;
+  }
+  .coffee-medium__smoke-two.smoke-active {
+    opacity: 0;
+    bottom: 70px;
+    left: 118px;
+    animation: smokeTwo 4s 5s linear 2;
+  }
+  .coffee-medium__smoke-three.smoke-active {
+    opacity: 0;
+    bottom: 65px;
+    right: 118px;
+    animation: smokeTwo 4s 6s linear 2;
+  }
+  .coffee-medium__smoke-for.smoke-active {
+    opacity: 0;
+    bottom: 50px;
+    right: 102px;
+    animation: smokeOne 4s 5s linear 2;
+  }
    
 .coffee-footer {
     width: 95%;

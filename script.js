@@ -1,6 +1,8 @@
 function clearDisplay() {
     customScreen.classList.add("disable");
     welcomeScreen.classList.add("disable");
+    cookingScreen.classList.add("disable");
+    readyScreen.classList.add("disable");
 }
 
 function showWelcomeMenu() {
@@ -10,9 +12,16 @@ function showWelcomeMenu() {
    }   
 }
 
-
 function showCustomMenu() {
     customScreen.classList.remove("disable");
+}
+
+function showCookingMenu() {
+    cookingScreen.classList.remove("disable");
+}
+
+function showReadyMenu() {
+    readyScreen.classList.remove("disable");
 }
 
 function addMoney() {
@@ -24,8 +33,29 @@ function addMoney() {
 
 function cookCoffee(){
     pour.classList.add("coffee-medium__liquid-active");
-    setTimeout(clearPour, 9000);
+    for (let i = 0; i < smoke.length; i++) {
+        smoke[i].classList.add("smoke-active");
+    };
+    clearDisplay();
+    showCookingMenu();
+    setTimeout(clearPour, 10000);
+    setTimeout(clearDisplay, 9000);
+    setTimeout(showReadyMenu, 9000);
+    setTimeout(clearDisplay, 14000);
+    setTimeout(showCustomMenu, 14000);
+    setTimeout(clearSmoke, 14000);
 }
+
+function clearPour() {
+    pour.classList.remove("coffee-medium__liquid-active");
+}
+
+function clearSmoke() {
+    for (let i = 0; i < smoke.length; i++) {
+        smoke[i].classList.remove("smoke-active");
+    };
+}
+
 
 function updateOutput(text, data) {
     text.innerHTML = data;
@@ -34,9 +64,7 @@ function updateOutput(text, data) {
 
 
 
-function clearPour() {
-    pour.classList.remove("coffee-medium__liquid-active");
-}
+
 
 function activeUser() {
     now_no_active = 0;
@@ -46,16 +74,25 @@ function activeUser() {
 
 const welcomeScreen = document.querySelector('[data-display-welcome]');
 const customScreen = document.querySelector('[data-display-custom]');
+const cookingScreen = document.querySelector('[data-display-cooking]');
+const readyScreen = document.querySelector('[data-display-ready]');
+
 
 const coffeeButtons = document.querySelectorAll('[custom__button]');
+const esprButton = document.querySelector('[data-espresso]');
+const cappuchButton = document.querySelector('[data-cappuccino]');
+const latteButton = document.querySelector('[data-latte]');
 const inputMoney = document.querySelector('[data-input-money]');
 const pour = document.getElementById("coffee-medium__liquid");
+const smoke = document.querySelectorAll('[data-smoke]');
+console.log(smoke);
 
 const customBalanceDisplay = document.querySelector('[data-custom-balance]');
 
-const costEspr = 2;
-const costCap = 3;
-const costLat = 3;
+const costEspr = 1.5;
+const costCap = 2.5;
+const costLat = 2.5;
+
 
 var customBalance = 0;
 var no_active_delay = 30; 
@@ -64,9 +101,25 @@ var now_no_active = 0;
 
 coffeeButtons.forEach(button => {
     button.addEventListener("click", function() {
-        customBalance -= costCap;
-        updateOutput(customBalanceDisplay, customBalance);
-        cookCoffee();
+        let costChosen = 0;
+        switch (button) {
+            case esprButton: 
+                costChosen = costEspr; 
+                break;
+            case cappuchButton: 
+                costChosen = costCap; 
+                break;
+            case latteButton: 
+                costChosen = costLat; 
+                break;
+        }
+        if (costChosen > customBalance) {
+            alert ("Please, add more money")
+        } else {
+            customBalance -= costChosen;
+            updateOutput(customBalanceDisplay, customBalance);
+            cookCoffee();
+        }
       }, false);
 });
 
