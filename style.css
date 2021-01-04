@@ -37,16 +37,12 @@ body{
     display: none;
 }
 
-@-webkit-keyframes pulsate {
-    50% { color: #027a6a; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 1px #ffd, 0 0 2px #fff; }
-}
 @keyframes pulsate {
     50% { color: #027a6a; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 1px #ffd, 0 0 2px #fff; }
 }
 .welcome-message {
     line-height: 200%;
     text-shadow: 0 -1px rgba(0,0,0,.1);
-    -webkit-animation: pulsate 1.2s linear infinite;
     animation: pulsate 1.2s linear infinite;
 }
 
@@ -109,6 +105,15 @@ body{
     
 }
 
+@keyframes pulsationCoin {
+  0% {
+    box-shadow: 0 0 0 0px rgba(209, 245, 2, 0.836);
+  }
+ 
+  100% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+}
 .coin-keeper__hole {
     width: 10px;
     height: 40px;
@@ -117,6 +122,7 @@ body{
     left: 20px;
     background-color: #000000;
     border-radius: 5px;
+    animation: pulsationCoin 1.2s linear infinite;
 
 }
 
