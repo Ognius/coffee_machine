@@ -240,8 +240,8 @@ withdrawButton.addEventListener('click', withdraw);
 
 
 
-/* setInterval("now_no_active++;", 1000); 
+setInterval("now_no_active++;", 1000); 
 setInterval("showWelcomeMenu()", 1000); 
-document.onmousemove = activeUser;  */
+document.onmousemove = activeUser;
 
 
