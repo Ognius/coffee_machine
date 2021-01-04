@@ -18,12 +18,16 @@ function showWelcomeMenu() {
 function showCustomMenu() {
     customScreen.classList.remove("disable");
     if (cups == 0) {
-        noCupsMessage.classList.remove("disable");
-        for (let i = 0; i < coffeeButtons.length; i++) {
-            coffeeButtons[i].classList.add("disable");
-        };
-        inputMoney.classList.add("disable");
+        toggleNoCupsMenu();
     }
+}
+
+function toggleNoCupsMenu() {
+    noCupsMessage.classList.toggle("disable");
+    for (let i = 0; i < coffeeButtons.length; i++) {
+        coffeeButtons[i].classList.toggle("disable");
+    };
+    inputMoney.classList.toggle("disable");
 }
 
 function showCookingMenu() {
@@ -111,6 +115,7 @@ function addCups() {
     if (input) {
         cups += input;
         updateOutput(cupsDisplay, cups);
+        toggleNoCupsMenu();
     }
 }
 
