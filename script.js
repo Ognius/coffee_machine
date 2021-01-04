@@ -17,6 +17,13 @@ function showWelcomeMenu() {
 
 function showCustomMenu() {
     customScreen.classList.remove("disable");
+    if (cups == 0) {
+        noCupsMessage.classList.remove("disable");
+        for (let i = 0; i < coffeeButtons.length; i++) {
+            coffeeButtons[i].classList.add("disable");
+        };
+        inputMoney.classList.add("disable");
+    }
 }
 
 function showCookingMenu() {
@@ -33,6 +40,8 @@ function showPinMenu() {
 }
 
 function showServiceMenu() {
+    updateOutput(serviceBalanceDisplay, serviceBalance);
+    updateOutput(cupsDisplay, cups);
     serviceScreen.classList.remove("disable");
 }
 
@@ -48,6 +57,7 @@ function addMoney() {
     var input = parseInt(prompt('Add some money. Please, pay attention, the machine does NOT give a change', 0));
     if (input) {
         customBalance += input;
+        serviceBalance += input;
     }    
 }
 
@@ -96,6 +106,22 @@ function checkPin() {
     }
 }
 
+function addCups() {
+    let input = parseInt(prompt('Add some cups. What number of cups you would like to add?', 0));
+    if (input) {
+        cups += input;
+        updateOutput(cupsDisplay, cups);
+    }
+}
+
+function withdraw() {
+    customBalance = 0;
+    serviceBalance = 0;
+    updateOutput(customBalanceDisplay, customBalance);
+    updateOutput(serviceBalanceDisplay, serviceBalance);
+    alert("You have just withdrew the proceeds");
+}
+
 
 function updateOutput(text, data) {
     text.innerHTML = data;
@@ -119,28 +145,35 @@ const readyScreen = document.querySelector('[data-display-ready]');
 const pinScreen = document.querySelector('[data-display-pin]');
 const serviceScreen = document.querySelector('[data-display-service]');
 const blockScreen = document.querySelector('[data-display-block]');
+const noCupsMessage = document.querySelector('[data-no-cups]');
 
 
 const coffeeButtons = document.querySelectorAll('[custom__button]');
+console.log(coffeeButtons);
 const esprButton = document.querySelector('[data-espresso]');
 const cappuchButton = document.querySelector('[data-cappuccino]');
 const latteButton = document.querySelector('[data-latte]');
 const inputMoney = document.querySelector('[data-input-money]');
 const pour = document.getElementById("coffee-medium__liquid");
 const smoke = document.querySelectorAll('[data-smoke]');
-
+const backButtons = document.querySelectorAll('[data-back-button]');
 const login = document.querySelector('[data-login]');
 const pinButton = document.querySelector('[data-pin-button]');
+const addCupsButton = document.querySelector('[data-add-cups]');
+const withdrawButton = document.querySelector('[data-withdraw]');
 
 const customBalanceDisplay = document.querySelector('[data-custom-balance]');
+const serviceBalanceDisplay = document.querySelector('[data-service-balance]');
+const cupsDisplay = document.querySelector('[data-cups]');
 
 const costEspr = 1.5;
 const costCap = 2.5;
 const costLat = 2.5;
 const pinFactory = 1234;
 
-var cups = 3;
+var cups = 1;
 var customBalance = 0;
+var serviceBalance = 0;
 var pinAttempt = 0;
 var no_active_delay = 30; 
 var now_no_active = 0;
@@ -180,6 +213,13 @@ coffeeButtons.forEach(button => {
       }, false);
 });
 
+backButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        clearDisplay();
+        showCustomMenu();
+    });
+});
+
 
 
 inputMoney.addEventListener("click", function(){
@@ -193,6 +233,10 @@ login.addEventListener("click", function(){
 });
 
 pinButton.addEventListener('click', checkPin);
+
+addCupsButton.addEventListener('click', addCups);
+
+withdrawButton.addEventListener('click', withdraw);
 
 
 

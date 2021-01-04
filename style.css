@@ -78,11 +78,15 @@ body{
     justify-content: space-between;
 }
 
+.menu__display__button.disable {
+  display: none;
+}
+
 .menu__display__pay {
     text-align: right;
 }
 
-.menu__display__login {
+.menu__display__right {
     position: absolute;
     bottom: 10px;
     right: 10px;

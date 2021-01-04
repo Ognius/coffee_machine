@@ -16,11 +16,12 @@
 
         <div class="menu__display__custom disable" data-display-custom>
           <p class="menu__display__output">Your balance is <br> <span class="menu__display__output-data" data-custom-balance>0</span> BYN</p>
+          <p class="menu__display__output disable" data-no-cups><br> Sorry, but we run out of cups..</p>
           <p class="menu__display__button menu__display__pay" data-input-money><span></span> <span>Add more money</span> </p>
           <p class="menu__display__button" custom__button data-espresso> <span>Espresso</span> <span>1.5</span>  </p>
           <p class="menu__display__button" custom__button data-cappuccino><span>Cappuccino</span> <span>2.5</span></p>
           <p class="menu__display__button" custom__button data-latte><span>Latte</span> <span>2.5</span></p>
-          <p class="menu__display__button menu__display__login" data-login>Service</p>
+          <p class="menu__display__button menu__display__right" data-login>Service</p>
         </div>
 
         <div class="menu__display__cooking disable" data-display-cooking>
@@ -32,15 +33,17 @@
 
         <div class="menu__display__pin disable" data-display-pin>
           <p class="message">Please enter pin-code <br> (3 attempts) </p>
-          <input type="text" data-pin>
+          <input type="password" data-pin autofocus>
           <input type="button" value="Ok" class="menu__display__button" data-pin-button>
+          <input type="button" value="Back" class="menu__display__button menu__display__right" data-back-button>
         </div>
 
         <div class="menu__display__service disable" data-display-service>
-          <p class="menu__display__output">Your balance is <br> <span class="menu__display__output-data" data-custom-balance>0</span> BYN</p>
-          <p class="menu__display__button" service__button> Balance</p>
-          <p class="menu__display__button" service__button>Cups</p>
-          <p class="menu__display__button" service__button>Income </p>
+          <p class="menu__display__output">Your balance: <span class="menu__display__output-data" data-service-balance>0</span> BYN</p>
+          <p class="menu__display__output">Cups left: <span class="menu__display__output-data" data-cups>0</span> </p>
+          <p class="menu__display__button" service__button data-add-cups>Add cups</p>
+          <p class="menu__display__button" service__button data-withdraw>Withdraw the income </p>
+          <input type="button" value="Back" class="menu__display__button menu__display__right" data-back-button>
         </div>
 
         <div class="menu__display__block disable" data-display-block>
