@@ -28,6 +28,7 @@ function toggleNoCupsMenu() {
         coffeeButtons[i].classList.toggle("disable");
     };
     inputMoney.classList.toggle("disable");
+    cupPicture.classList.toggle("disable");
 }
 
 function showCookingMenu() {
@@ -132,15 +133,9 @@ function updateOutput(text, data) {
     text.innerHTML = data;
 }
 
-
-
-
-
-
 function activeUser() {
     now_no_active = 0;
-  };
-
+};
 
 
 const welcomeScreen = document.querySelector('[data-display-welcome]');
@@ -151,10 +146,9 @@ const pinScreen = document.querySelector('[data-display-pin]');
 const serviceScreen = document.querySelector('[data-display-service]');
 const blockScreen = document.querySelector('[data-display-block]');
 const noCupsMessage = document.querySelector('[data-no-cups]');
-
+const cupPicture = document.querySelector('[data-cup-picture]');
 
 const coffeeButtons = document.querySelectorAll('[custom__button]');
-console.log(coffeeButtons);
 const esprButton = document.querySelector('[data-espresso]');
 const cappuchButton = document.querySelector('[data-cappuccino]');
 const latteButton = document.querySelector('[data-latte]');
@@ -242,8 +236,6 @@ pinButton.addEventListener('click', checkPin);
 addCupsButton.addEventListener('click', addCups);
 
 withdrawButton.addEventListener('click', withdraw);
-
-
 
 setInterval("now_no_active++;", 1000); 
 setInterval("showWelcomeMenu()", 1000); 
