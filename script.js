@@ -9,7 +9,7 @@ function clearDisplay() {
 }
 
 function showWelcomeMenu() {
-    if (now_no_active >= no_active_delay & block == false) { 
+    if (now_no_active >= no_active_delay & block == false & cups !== 0) { 
         clearDisplay();
         welcomeScreen.classList.remove("disable");
    }   
@@ -59,7 +59,7 @@ function addMoney() {
     if (cups < 2) {
         alert(`Please pay attention, ${cups} cup left`);
     }
-    var input = parseInt(prompt('Add some money. Please, pay attention, the machine does NOT give a change', 0));
+    var input = parseFloat(prompt('Add some money. Please, pay attention, the machine does NOT give a change', 0));
     if (input) {
         customBalance += input;
         serviceBalance += input;
@@ -214,6 +214,9 @@ coffeeButtons.forEach(button => {
 
 backButtons.forEach(button => {
     button.addEventListener('click', function() {
+        if (cups == 0) {
+            toggleNoCupsMenu();
+        }
         clearDisplay();
         showCustomMenu();
     });
